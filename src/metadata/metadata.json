@@ -1,0 +1,845 @@
+{
+    "package": "Travelpayouts",
+    "tagline": "Travelpayouts API",
+    "description": "Travelpayouts Data API \u2013 the way to get travel insights for your site or blog. Get flight price trends and find popular destinations for your customers.",
+    "image": "https:\/\/logo.clearbit.com\/travelpayouts.com",
+    "repo": "https:\/\/github.com\/RapidSoftwareSolutions\/Marketplace-Travelpayouts-Package",
+    "keywords": [
+        "API",
+        "travelpayouts",
+        "travel",
+        "ticket",
+        "airline"
+    ],
+    "accounts": {
+        "domain": "travelpayouts.com",
+        "credentials": [
+            "token"
+        ]
+    },
+    "blocks": [
+        {
+            "name": "flightPriceHistory",
+            "description": "Brings back the list of prices found by our users during the most recent 48 hours according to the filters used.",
+            "args": [
+                {
+                    "name": "token",
+                    "type": "credentials",
+                    "info": "Individual affiliate token.",
+                    "required": true
+                },
+                {
+                    "name": "currency",
+                    "type": "String",
+                    "info": "The airline ticket\u2019s The default value - RUB.",
+                    "required": false
+                },
+                {
+                    "name": "origin",
+                    "type": "String",
+                    "info": "The point of departure. The IATA city code or the country code. The length - from 2 to 3 symbols.",
+                    "required": false
+                },
+                {
+                    "name": "destination",
+                    "type": "String",
+                    "info": "The point of destination. The IATA city code or the country code. The length - from 2 to 3 symbols.",
+                    "required": false
+                },
+                {
+                    "name": "beginningOfPeriod",
+                    "type": "DatePicker",
+                    "info": "The beginning of the period, within which the dates of departure fall (in the YYYY-MM-DD format, for example, 2016-05-01). Must be specified if period_type is equal to month.",
+                    "required": false
+                },
+                {
+                    "name": "periodType",
+                    "type": "Select",
+                    "options": [
+                        "year",
+                        "month"
+                    ],
+                    "info": "The period for which the tickets have been found.",
+                    "required": true
+                },
+                {
+                    "name": "oneWay",
+                    "type": "Boolean",
+                    "info": "true - one way, false - back-to-back. The default value - false.",
+                    "required": false
+                },
+                {
+                    "name": "page",
+                    "type": "Number",
+                    "info": "A page number. The default value - 1.",
+                    "required": false
+                },
+                {
+                    "name": "limit",
+                    "type": "Number",
+                    "info": "The total number of records on a page. The default value - 30. The maximum value - 1000.",
+                    "required": false
+                },
+                {
+                    "name": "showToAffiliates",
+                    "type": "Boolean",
+                    "info": "false - all the prices, true - just the prices, found using the partner marker (recommended). The default value - true.",
+                    "required": false
+                },
+                {
+                    "name": "sorting",
+                    "type": "Select",
+                    "options": [
+                        "price",
+                        "route",
+                        "distance_unit_price"
+                    ],
+                    "info": "The assorting of prices.",
+                    "required": false
+                },
+                {
+                    "name": "tripDuration",
+                    "type": "String",
+                    "info": "The length of stay in weeks or days (for period_type=day).",
+                    "required": false
+                }
+            ],
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getPricesForMonth",
+            "description": "Brings back the prices for each day of a month, grouped together by number of transfers.",
+            "args": [
+                {
+                    "name": "token",
+                    "type": "credentials",
+                    "info": "Individual affiliate token.",
+                    "required": true
+                },
+                {
+                    "name": "currency",
+                    "type": "String",
+                    "info": "The airline ticket\u2019s The default value - RUB.",
+                    "required": false
+                },
+                {
+                    "name": "origin",
+                    "type": "String",
+                    "info": "The point of departure. The IATA city code or the country code. The length - from 2 to 3 symbols.",
+                    "required": false
+                },
+                {
+                    "name": "destination",
+                    "type": "String",
+                    "info": "The point of destination. The IATA city code or the country code. The length - from 2 to 3 symbols.",
+                    "required": false
+                },
+                {
+                    "name": "month",
+                    "type": "DatePicker",
+                    "info": "The beginning of the month in the YYYY-MM-DD format.",
+                    "required": false
+                },
+                {
+                    "name": "showToAffiliates",
+                    "type": "Boolean",
+                    "info": "false - all the prices, true - just the prices, found using the partner marker (recommended). The default value - true.",
+                    "required": false
+                }
+            ],
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getPricesForAlternativeDirections",
+            "description": "Brings back the prices for the directions between the nearest to the target cities.",
+            "args": [
+                {
+                    "name": "token",
+                    "type": "credentials",
+                    "info": "Individual affiliate token.",
+                    "required": true
+                },
+                {
+                    "name": "currency",
+                    "type": "String",
+                    "info": "The airline ticket\u2019s The default value - RUB.",
+                    "required": false
+                },
+                {
+                    "name": "origin",
+                    "type": "String",
+                    "info": "The point of departure. The IATA city code or the country code. The length - from 2 to 3 symbols.",
+                    "required": false
+                },
+                {
+                    "name": "destination",
+                    "type": "String",
+                    "info": "The point of destination. The IATA city code or the country code. The length - from 2 to 3 symbols.",
+                    "required": false
+                },
+                {
+                    "name": "limit",
+                    "type": "Number",
+                    "info": "The number of variants entered, from 1 to 20, where 1 is just the variant with the specified points of departure and the points of destination.",
+                    "required": false
+                },
+                {
+                    "name": "showToAffiliates",
+                    "type": "Boolean",
+                    "info": "false - all the prices, true - just the prices, found using the partner marker (recommended). The default value - true.",
+                    "required": false
+                },
+                {
+                    "name": "departDate",
+                    "type": "DatePicker",
+                    "info": "Month of departure (yyyy-mm).",
+                    "required": false
+                },
+                {
+                    "name": "returnDate",
+                    "type": "DatePicker",
+                    "info": "Month of return (yyyy-mm).",
+                    "required": false
+                },
+                {
+                    "name": "flexibility",
+                    "type": "String",
+                    "info": " expansion of the range of dates upward or downward. The value may vary from 0 to 7, where 0 shall show the variants for the dates specified and 7 shall show all the variants found for a week prior to the specified dates and a week after.",
+                    "required": false
+                },
+                {
+                    "name": "distance",
+                    "type": "String",
+                    "info": "The number of variants entered, from 1 to 20, where 1 is just the variant with the specified points of departure and the points of destination.",
+                    "required": false
+                }
+            ],
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getCheapestTickets",
+            "description": "Returns the cheapest non-stop tickets, as well as tickets with 1 or 2 stops, for the selected route with departure\/return date filters.",
+            "args": [
+                {
+                    "name": "token",
+                    "type": "credentials",
+                    "info": "Individual affiliate token.",
+                    "required": true
+                },
+                {
+                    "name": "currency",
+                    "type": "String",
+                    "info": "The airline ticket\u2019s The default value - RUB.",
+                    "required": false
+                },
+                {
+                    "name": "origin",
+                    "type": "String",
+                    "info": "The point of departure. The IATA city code or the country code. The length - from 2 to 3 symbols.",
+                    "required": true
+                },
+                {
+                    "name": "destination",
+                    "type": "String",
+                    "info": "The point of destination. The IATA city code or the country code. The length - from 2 to 3 symbols.",
+                    "required": false
+                },
+                {
+                    "name": "limit",
+                    "type": "Number",
+                    "info": "The number of variants entered, from 1 to 20, where 1 is just the variant with the specified points of departure and the points of destination.",
+                    "required": false
+                },
+                {
+                    "name": "showToAffiliates",
+                    "type": "Boolean",
+                    "info": "false - all the prices, true - just the prices, found using the partner marker (recommended). The default value - true.",
+                    "required": false
+                },
+                {
+                    "name": "departDate",
+                    "type": "DatePicker",
+                    "info": "Month of departure (yyyy-mm).",
+                    "required": false
+                },
+                {
+                    "name": "returnDate",
+                    "type": "DatePicker",
+                    "info": "Month of return (yyyy-mm).",
+                    "required": false
+                },
+                {
+                    "name": "flexibility",
+                    "type": "String",
+                    "info": " expansion of the range of dates upward or downward. The value may vary from 0 to 7, where 0 shall show the variants for the dates specified and 7 shall show all the variants found for a week prior to the specified dates and a week after.",
+                    "required": false
+                },
+                {
+                    "name": "distance",
+                    "type": "String",
+                    "info": "The number of variants entered, from 1 to 20, where 1 is just the variant with the specified points of departure and the points of destination.",
+                    "required": false
+                },
+                {
+                    "name": "page",
+                    "type": "Number",
+                    "info": "Display the found data (by default the page displays 100 found prices. If the destination isn't selected, there can be more data. In this case, use the page, to display the next set of data, for example, page=2).",
+                    "required": false
+                }
+            ],
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getCheapestTicketsGroupedByMonth",
+            "description": "Returns the cheapest non-stop tickets, as well as tickets with 1 or 2 stops, for the selected route grouped by month.",
+            "args": [
+                {
+                    "name": "token",
+                    "type": "credentials",
+                    "info": "Individual affiliate token.",
+                    "required": true
+                },
+                {
+                    "name": "currency",
+                    "type": "String",
+                    "info": "The airline ticket\u2019s The default value - RUB.",
+                    "required": false
+                },
+                {
+                    "name": "origin",
+                    "type": "String",
+                    "info": "The point of departure. The IATA city code or the country code. The length - from 2 to 3 symbols.",
+                    "required": true
+                },
+                {
+                    "name": "destination",
+                    "type": "String",
+                    "info": "The point of destination. The IATA city code or the country code. The length - from 2 to 3 symbols.",
+                    "required": false
+                }
+            ],
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getNonStopTickets",
+            "description": "Returns the cheapest non-stop ticket for the selected route with departure\/return date filters.",
+            "args": [
+                {
+                    "name": "token",
+                    "type": "credentials",
+                    "info": "Individual affiliate token.",
+                    "required": true
+                },
+                {
+                    "name": "currency",
+                    "type": "String",
+                    "info": "The airline ticket\u2019s The default value - RUB.",
+                    "required": false
+                },
+                {
+                    "name": "origin",
+                    "type": "String",
+                    "info": "The point of departure. The IATA city code or the country code. The length - from 2 to 3 symbols.",
+                    "required": true
+                },
+                {
+                    "name": "destination",
+                    "type": "String",
+                    "info": "The point of destination. The IATA city code or the country code. The length - from 2 to 3 symbols.",
+                    "required": false
+                },
+                {
+                    "name": "departDate",
+                    "type": "DatePicker",
+                    "info": "Month of departure (yyyy-mm).",
+                    "required": false
+                },
+                {
+                    "name": "returnDate",
+                    "type": "DatePicker",
+                    "info": "Month of return (yyyy-mm).",
+                    "required": false
+                }
+            ],
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getFlightPriceTrends",
+            "description": "Returns the cheapest non-stop, one-stop, and two-stop flights for the selected route for each day of the selected month.",
+            "args": [
+                {
+                    "name": "token",
+                    "type": "credentials",
+                    "info": "Individual affiliate token.",
+                    "required": true
+                },
+                {
+                    "name": "origin",
+                    "type": "String",
+                    "info": "The point of departure. The IATA city code or the country code. The length - from 2 to 3 symbols.",
+                    "required": true
+                },
+                {
+                    "name": "destination",
+                    "type": "String",
+                    "info": "The point of destination. The IATA city code or the country code. The length - from 2 to 3 symbols.",
+                    "required": true
+                },
+                {
+                    "name": "departDate",
+                    "type": "DatePicker",
+                    "info": "Month of departure (yyyy-mm).",
+                    "required": false
+                },
+                {
+                    "name": "returnDate",
+                    "type": "DatePicker",
+                    "info": "Month of return (yyyy-mm).",
+                    "required": false
+                },
+                {
+                    "name": "calendarType",
+                    "type": "String",
+                    "info": "Field used to build the calendar. Equal to either: departure_date or return_date",
+                    "required": false
+                },
+                {
+                    "name": "length",
+                    "type": "String",
+                    "info": "Length of stay in the destination city.",
+                    "required": false
+                },
+                {
+                    "name": "currency",
+                    "type": "String",
+                    "info": "The airline ticket\u2019s The default value - RUB.",
+                    "required": false
+                }
+            ],
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getPopulaAirlinesRoutes",
+            "description": "Returns routes for which an airline operates flights, sorted by popularity.",
+            "args": [
+                {
+                    "name": "token",
+                    "type": "credentials",
+                    "info": "Individual affiliate token.",
+                    "required": true
+                },
+                {
+                    "name": "airlineCode",
+                    "type": "String",
+                    "info": "IATA code of airline.",
+                    "required": true
+                },
+                {
+                    "name": "limit",
+                    "type": "Number",
+                    "info": "Records limit per page. Default value is 100. Not less than 1000.",
+                    "required": false
+                }
+            ],
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getWeekPrices",
+            "description": "Brings back the prices for the nearest dates to the target ones.",
+            "args": [
+                {
+                    "name": "token",
+                    "type": "credentials",
+                    "info": "Individual affiliate token.",
+                    "required": true
+                },
+                {
+                    "name": "currency",
+                    "type": "String",
+                    "info": "The airline ticket\u2019s The default value - RUB.",
+                    "required": false
+                },
+                {
+                    "name": "origin",
+                    "type": "String",
+                    "info": "The point of departure. The IATA city code or the country code. The length - from 2 to 3 symbols.",
+                    "required": false
+                },
+                {
+                    "name": "destination",
+                    "type": "String",
+                    "info": "The point of destination. The IATA city code or the country code. The length - from 2 to 3 symbols.",
+                    "required": false
+                },
+                {
+                    "name": "showToAffiliates",
+                    "type": "Boolean",
+                    "info": "false - all the prices, true - just the prices, found using the partner marker (recommended). The default value - true.",
+                    "required": false
+                },
+                {
+                    "name": "departDate",
+                    "type": "DatePicker",
+                    "info": "Month of departure (yyyy-mm).",
+                    "required": false
+                },
+                {
+                    "name": "returnDate",
+                    "type": "DatePicker",
+                    "info": "Month of return (yyyy-mm).",
+                    "required": false
+                }
+            ],
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getPopularDestinations",
+            "description": "Brings back the most popular directions from a specified city.",
+            "args": [
+                {
+                    "name": "token",
+                    "type": "credentials",
+                    "info": "Individual affiliate token.",
+                    "required": true
+                },
+                {
+                    "name": "currency",
+                    "type": "String",
+                    "info": "The airline ticket\u2019s The default value - RUB.",
+                    "required": false
+                },
+                {
+                    "name": "origin",
+                    "type": "String",
+                    "info": "The point of departure. The IATA city code or the country code. The length - from 2 to 3 symbols.",
+                    "required": true
+                }
+            ],
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getCountriesList",
+            "description": "Returns a file with a list of countries from the database. ",
+            "args": [
+                {
+                    "name": "token",
+                    "type": "credentials",
+                    "info": "Individual affiliate token.",
+                    "required": true
+                }
+            ],
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getCitiesList",
+            "description": "Returns a file with a list of cities from the database. ",
+            "args": [
+                {
+                    "name": "token",
+                    "type": "credentials",
+                    "info": "Individual affiliate token.",
+                    "required": true
+                }
+            ],
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getAirportsList",
+            "description": "Returns a file with a list of airports from the database. ",
+            "args": [
+                {
+                    "name": "token",
+                    "type": "credentials",
+                    "info": "Individual affiliate token.",
+                    "required": true
+                }
+            ],
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getAirlinesList",
+            "description": "Returns a file with a list of airlines from the database. ",
+            "args": [
+                {
+                    "name": "token",
+                    "type": "credentials",
+                    "info": "Individual affiliate token.",
+                    "required": true
+                }
+            ],
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getAllianceList",
+            "description": "Returns a file with a list of alliances from the database. ",
+            "args": [
+                {
+                    "name": "token",
+                    "type": "credentials",
+                    "info": "Individual affiliate token.",
+                    "required": true
+                }
+            ],
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getAirplanesList",
+            "description": "Returns a file with a list of airplanes from the database. ",
+            "args": [
+                {
+                    "name": "token",
+                    "type": "credentials",
+                    "info": "Individual affiliate token.",
+                    "required": true
+                }
+            ],
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getRoutesList",
+            "description": "Returns a file with a list of routes from the database. ",
+            "args": [
+                {
+                    "name": "token",
+                    "type": "credentials",
+                    "info": "Individual affiliate token.",
+                    "required": true
+                }
+            ],
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getUserDefinitionByIp",
+            "description": "Returns the IATA code and the name of the city nearest to the user.",
+            "args": [
+                {
+                    "name": "locale",
+                    "type": "Select",
+                    "options": [
+                        "en",
+                        "ru",
+                        "de",
+                        "fr",
+                        "it",
+                        "pl",
+                        "th"
+                    ],
+                    "info": "The language in which the name of the city is returned (available languages: en, ru, de, fr, it, pl, th. By default, it is Russian)",
+                    "required": true
+                },
+                {
+                    "name": "callback",
+                    "type": "String",
+                    "info": "Specifies the name of the function that contains a response to a query (mandatory).",
+                    "required": true
+                },
+                {
+                    "name": "ip",
+                    "type": "String",
+                    "info": "IP addresses of the users (if the address is not passed, the system determines the IP from the header of the request).",
+                    "required": true
+                }
+            ],
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getEchangeRate",
+            "description": "Brings back the current rate of all popular currencies to RUB.",
+            "args": [],
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getSpecialOffers",
+            "description": "Brings back the recent special offers from the airline companies.",
+            "args": [
+                {
+                    "name": "token",
+                    "type": "credentials",
+                    "info": "Individual affiliate token.",
+                    "required": true
+                }
+            ],
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        }
+    ]
+}
