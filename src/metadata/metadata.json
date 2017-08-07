@@ -740,28 +740,6 @@
             ]
         },
         {
-            "name": "getRoutesList",
-            "description": "Returns a file with a list of routes from the database. ",
-            "args": [
-                {
-                    "name": "token",
-                    "type": "credentials",
-                    "info": "Individual affiliate token.",
-                    "required": true
-                }
-            ],
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
-                {
-                    "name": "success",
-                    "info": "Success"
-                }
-            ]
-        },
-        {
             "name": "getUserDefinitionByIp",
             "description": "Returns the IATA code and the name of the city nearest to the user.",
             "args": [

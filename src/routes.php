@@ -17,7 +17,6 @@ $routes = [
     'getAirlinesList',
     'getAllianceList',
     'getAirplanesList',
-    'getRoutesList',
     'getUserDefinitionByIp',
     'getEchangeRate',
     'getSpecialOffers'

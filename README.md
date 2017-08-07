@@ -190,12 +190,6 @@ Returns a file with a list of airplanes from the database.
 |------|------------|----------
 | token| credentials| Individual affiliate token.
 
-## Travelpayouts.getRoutesList
-Returns a file with a list of routes from the database. 
-
-| Field| Type       | Description
-|------|------------|----------
-| token| credentials| Individual affiliate token.
 
 ## Travelpayouts.getUserDefinitionByIp
 Returns the IATA code and the name of the city nearest to the user.
