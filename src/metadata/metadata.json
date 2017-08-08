@@ -761,7 +761,7 @@
                 {
                     "name": "callback",
                     "type": "String",
-                    "info": "Specifies the name of the function that contains a response to a query (mandatory).",
+                    "info": "Specifies the name of the function that contains a response to a query.",
                     "required": true
                 },
                 {
